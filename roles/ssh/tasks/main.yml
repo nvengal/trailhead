@@ -1,0 +1,36 @@
+---
+- name: Block root and password authentication
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line }}'
+    validate: 'sshd -T -f %s'
+    state: present
+  with_items:
+    - regexp: '^PasswordAuthentication'
+      line: 'PasswordAuthentication no'
+    - regexp: '^PermitRootLogin'
+      line: 'PermitRootLogin no'
+  notify: Restart ssh
+
+- name: Install fail2ban
+  apt:
+    name: fail2ban
+    state: present
+
+- name: Configure fail2ban
+  blockinfile:
+    path: /etc/fail2ban/jail.local
+    create: yes
+    mode: 0644
+    block: |
+      [sshd]
+      enabled = true
+      filter = sshd
+  notify: Restart fail2ban
+
+- name: Start fail2ban on boot
+  service:
+    name: fail2ban
+    enabled: true
+    state: started
