@@ -7,6 +7,10 @@
         update_cache: yes
         cache_valid_time: 3600
   roles:
-    - role: apt
-    - role: firewall
-    - role: ssh
+    - apt
+    - firewall
+    - ssh
+- hosts: core
+  become: true
+  roles:
+    - geerlingguy.docker
