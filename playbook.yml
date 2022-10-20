@@ -10,7 +10,3 @@
     - apt
     - firewall
     - ssh
-- hosts: core
-  become: true
-  roles:
-    - geerlingguy.docker
