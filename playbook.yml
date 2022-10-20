@@ -10,3 +10,9 @@
     - apt
     - firewall
     - ssh
+- hosts: core
+  become: true
+  vars:
+    traefik_binary_url: https://github.com/traefik/traefik/releases/download/v2.9.1/traefik_v2.9.1_linux_386.tar.gz
+  roles:
+    - traefik

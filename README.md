@@ -1,10 +1,6 @@
 # Gateway
 
-Ansible playbook to setup up a load balancer
-
-## Dependencies
-
-`ansible-galaxy install -r requirements.yml`
+Ansible playbook to setup traefik
 
 ## Useful commands
 
