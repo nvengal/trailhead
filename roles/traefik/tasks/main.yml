@@ -15,12 +15,22 @@
     state: directory
   with_items:
     - "/usr/bin"
-    - "/etc"
+    - "/etc/traefik"
 
-- name: Copy traefik config file
+- name: Copy traefik static config
   template:
     src: "traefik.toml.j2"
-    dest: "/etc/traefik.toml"
+    dest: "/etc/traefik/traefik.toml"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Restart traefik
+
+- name: Copy traefik dynamic config
+  template:
+    src: "dynamic.toml.j2"
+    dest: "/etc/traefik/dynamic.toml"
     owner: root
     group: root
     mode: 0644

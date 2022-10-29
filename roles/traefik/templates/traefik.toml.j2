@@ -1,7 +1,7 @@
 ################################################################
 #
 # Configuration sample for Traefik v2.
-#
+# https://doc.traefik.io/traefik/reference/static-configuration/file/
 #
 ################################################################
 
@@ -10,7 +10,7 @@
 ################################################################
 [global]
   checkNewVersion = true
-  sendAnonymousUsage = false
+  sendAnonymousUsage = true
 
 ################################################################
 # Entrypoints configuration
@@ -26,6 +26,13 @@
 
   [entryPoints.websecure]
     address = ":443"
+
+################################################################
+# Provider configuration
+################################################################
+[providers]
+  [providers.file]
+  filename = "/etc/traefik/dynamic.toml"
 
 ################################################################
 # Traefik logs configuration

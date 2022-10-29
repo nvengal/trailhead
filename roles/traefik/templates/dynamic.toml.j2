@@ -1,0 +1,21 @@
+################################################################
+#
+# Dynamic Configuration for Traefik v2
+# https://doc.traefik.io/traefik/reference/dynamic-configuration/file/
+#
+################################################################
+
+[http]
+  [http.routers.TODO-ServiceName]
+  entryPoints = ["web"]
+  rule = "Host(`3.82.115.169`)" # TODO
+  service = "TODO-ServiceName"
+  [http.services.TODO-ServiceName.loadBalancer]
+  [[http.services.TODO-ServiceName.loadBalancer.servers]]
+    url = "http://localhost:8001" # TODO
+  [[http.services.TODO-ServiceName.loadBalancer.servers]]
+    url = "http://localhost:8002" # TODO
+
+# TODO: health checks
+# TODO: stick sessions
+# TODO: servers and service name as ansible vars
