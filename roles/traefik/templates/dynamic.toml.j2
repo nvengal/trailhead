@@ -7,14 +7,23 @@
 
 [http]
   [http.routers.TODO-ServiceName]
-  entryPoints = ["web"]
-  rule = "Host(`3.82.115.169`)" # TODO
-  service = "TODO-ServiceName"
-  [http.services.TODO-ServiceName.loadBalancer]
-  [[http.services.TODO-ServiceName.loadBalancer.servers]]
-    url = "http://localhost:8001" # TODO
-  [[http.services.TODO-ServiceName.loadBalancer.servers]]
-    url = "http://localhost:8002" # TODO
+    entryPoints = ["web"]
+    rule = "Host(`todo.route`)" # TODO
+    service = "TODO-ServiceName"
+    [http.services.TODO-ServiceName.loadBalancer]
+      [[http.services.TODO-ServiceName.loadBalancer.servers]]
+        url = "http://localhost:8001" # TODO
+      [[http.services.TODO-ServiceName.loadBalancer.servers]]
+        url = "http://localhost:8002" # TODO
+
+  [http.routers.InternalApi]
+    rule = "Host(`3.82.115.169`)" # TODO
+    service = "api@internal"
+    middlewares = ["InternalAuth"]
+
+  [http.middlewares.InternalAuth.basicAuth]
+    # TODO: change me
+    users = ["admin:$2y$10$iavjUW.TnmtFi/78QBvDneW0Mx9UrOU6Pm3ZsB9YOvdZZ3M/KceSS"]
 
 # TODO: health checks
 # TODO: stick sessions
