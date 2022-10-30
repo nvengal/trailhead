@@ -22,8 +22,8 @@
           targets:
             - http://localhost:8001
             - http://localhost:8002
-          host: todo.route
+          host: trailhead.vengal.dev
         dashboard:
-          host: 3.82.115.169
+          host: traefik.vengal.dev
           authorized_users:
             - "admin:$2y$10$iavjUW.TnmtFi/78QBvDneW0Mx9UrOU6Pm3ZsB9YOvdZZ3M/KceSS"
