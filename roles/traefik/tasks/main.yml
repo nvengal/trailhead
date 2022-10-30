@@ -29,8 +29,8 @@
 
 - name: Copy traefik dynamic config
   template:
-    src: "dynamic.toml.j2"
-    dest: "{{ traefik_config_dir }}/dynamic.toml"
+    src: "config.toml.j2"
+    dest: "{{ traefik_config_dir }}/config.toml"
     owner: root
     group: root
     mode: 0644
