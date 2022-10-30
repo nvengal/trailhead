@@ -8,7 +8,7 @@ Ansible playbook to setup traefik
 - ssl cert signing and automated renewal
 - sticky sessions?
 - health checks
-- hardcoded routes, services, etc to ansible vars
+- traefik.service todos
 - documentation
 
 ## Useful commands

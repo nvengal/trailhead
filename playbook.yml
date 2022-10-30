@@ -12,7 +12,18 @@
     - ssh
 - hosts: core
   become: true
-  vars:
-    traefik_binary_url: https://github.com/traefik/traefik/releases/download/v2.9.1/traefik_v2.9.1_linux_386.tar.gz
   roles:
-    - traefik
+    - role: traefik
+      vars:
+        traefik_binary_url: https://github.com/traefik/traefik/releases/download/v2.9.1/traefik_v2.9.1_linux_386.tar.gz
+        # TODO: replace with real values
+        service:
+          name: ChangeMe
+          targets:
+            - http://localhost:8001
+            - http://localhost:8002
+          host: todo.route
+        dashboard:
+          host: 3.82.115.169
+          authorized_users:
+            - "admin:$2y$10$iavjUW.TnmtFi/78QBvDneW0Mx9UrOU6Pm3ZsB9YOvdZZ3M/KceSS"

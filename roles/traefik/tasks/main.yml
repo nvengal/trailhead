@@ -15,12 +15,12 @@
     state: directory
   with_items:
     - "/usr/bin"
-    - "/etc/traefik"
+    - "{{ traefik_config_dir }}"
 
 - name: Copy traefik static config
   template:
     src: "traefik.toml.j2"
-    dest: "/etc/traefik/traefik.toml"
+    dest: "{{ traefik_config_dir }}/traefik.toml"
     owner: root
     group: root
     mode: 0644
@@ -30,7 +30,7 @@
 - name: Copy traefik dynamic config
   template:
     src: "dynamic.toml.j2"
-    dest: "/etc/traefik/dynamic.toml"
+    dest: "{{ traefik_config_dir }}/dynamic.toml"
     owner: root
     group: root
     mode: 0644
