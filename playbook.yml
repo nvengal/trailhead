@@ -18,10 +18,11 @@
         traefik_binary_url: https://github.com/traefik/traefik/releases/download/v2.9.1/traefik_v2.9.1_linux_386.tar.gz
         # TODO: replace with real values
         service:
-          name: ChangeMe
+          name: change-me
           targets:
             - http://localhost:8001
             - http://localhost:8002
+            - http://localhost:8003
           host: trailhead.vengal.dev
         dashboard:
           host: traefik.vengal.dev

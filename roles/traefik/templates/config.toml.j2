@@ -10,19 +10,19 @@
   rule = "Host(`{{ service.host }}`)"
   service = "{{ service.name }}"
     [http.routers.{{ service.name }}.tls]
-    certResolver = "LetsEncrypt"
+    certResolver = "lets-encrypt"
   [http.services.{{ service.name }}.loadBalancer]
 {% for target in service.targets %}
     [[http.services.{{ service.name }}.loadBalancer.servers]]
     url = "{{ target }}"
 {% endfor %}
 
-  [http.routers.InternalApi]
+  [http.routers.internal-api]
   rule = "Host(`{{ dashboard.host }}`)"
   service = "api@internal"
-  middlewares = ["InternalAuth"]
-    [http.routers.InternalApi.tls]
-    certResolver = "LetsEncrypt"
+  middlewares = ["internal-auth"]
+    [http.routers.internal-api.tls]
+    certResolver = "lets-encrypt"
 
-  [http.middlewares.InternalAuth.basicAuth]
+  [http.middlewares.internal-auth.basicAuth]
   users = {{ dashboard.authorized_users }}

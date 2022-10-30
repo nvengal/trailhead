@@ -32,10 +32,10 @@
 ################################################################
 # Certificate Resolvers
 ################################################################
-[certificatesResolvers.LetsEncrypt.acme]
+[certificatesResolvers.lets-encrypt.acme]
   email = "changeme@email.com" # TODO
   storage = "{{ traefik_config_dir }}/acme.json"
-  [certificatesResolvers.LetsEncrypt.acme.httpChallenge]
+  [certificatesResolvers.lets-encrypt.acme.httpChallenge]
     entryPoint = "web"
 
 ################################################################
