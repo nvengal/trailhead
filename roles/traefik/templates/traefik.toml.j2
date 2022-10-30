@@ -25,7 +25,16 @@
     address = ":80"
 
   [entryPoints.websecure]
-    address = ":443"
+  address = ":443"
+
+################################################################
+# Certificate Resolvers
+################################################################
+[certificatesResolvers.LetsEncrypt.acme]
+  email = "changeme@email.com" # TODO
+  storage = "{{ traefik_config_dir }}/acme.json"
+  [certificatesResolvers.LetsEncrypt.acme.httpChallenge]
+    entryPoint = "web"
 
 ################################################################
 # Provider configuration

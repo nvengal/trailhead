@@ -7,19 +7,24 @@
 
 [http]
   [http.routers.{{ service.name }}]
-    entryPoints = ["web"]
-    rule = "Host(`{{ service.host }}`)"
-    service = "{{ service.name }}"
-    [http.services.{{ service.name }}.loadBalancer]
+  entryPoints = ["web", "websecure"]
+  rule = "Host(`{{ service.host }}`)"
+  service = "{{ service.name }}"
+    [http.routers.{{ service.name }}.tls]
+    certResolver = "LetsEncrypt"
+  [http.services.{{ service.name }}.loadBalancer]
 {% for target in service.targets %}
-      [[http.services.{{ service.name }}.loadBalancer.servers]]
-        url = "{{ target }}"
+    [[http.services.{{ service.name }}.loadBalancer.servers]]
+    url = "{{ target }}"
 {% endfor %}
 
   [http.routers.InternalApi]
-    rule = "Host(`{{ dashboard.host }}`)"
-    service = "api@internal"
-    middlewares = ["InternalAuth"]
+  entryPoints = ["web", "websecure"]
+  rule = "Host(`{{ dashboard.host }}`)"
+  service = "api@internal"
+  middlewares = ["InternalAuth"]
+    [http.routers.InternalApi.tls]
+    certResolver = "LetsEncrypt"
 
   [http.middlewares.InternalAuth.basicAuth]
-    users = {{ dashboard.authorized_users }}
+  users = {{ dashboard.authorized_users }}
