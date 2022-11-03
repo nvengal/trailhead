@@ -9,7 +9,7 @@ Ansible playbook to setup traefik as a loadbalancer with automated ssl cert gene
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) installed on control node
 - User with SSH access from control node to managed node
 - Replace placeholder values
-  - [Contorl Node IP](https://github.com/nvengal/trailhead/blob/1e56d2be9b23b6d9b48045b9ad984aa29ab592a2/hosts.yml#L5)
+  - [Control Node IP](https://github.com/nvengal/trailhead/blob/1e56d2be9b23b6d9b48045b9ad984aa29ab592a2/hosts.yml#L5)
   - [Traefik Config](https://github.com/nvengal/trailhead/blob/1e56d2be9b23b6d9b48045b9ad984aa29ab592a2/playbook.yml#L19-L30)
 
 ## How to deploy traefik using ansible
@@ -21,7 +21,7 @@ ansible-playbook -i hosts.yml playbook.yml -u <user_with_ssh_access_to_managed_n
 
 ## What's being deployed?
 
-The roles in the `playbook.yml` file corresponding to the `roles` directory determine the infrastructure that is built on the managed node. Currently, the following roles are being deployed:
+The roles in the `playbook.yml` file and corresponding `roles` directory determine the infrastructure that is built on the managed node. Currently, the following roles are being deployed:
 
 - apt
   - Installs repository tools and unattended-upgrades
@@ -39,6 +39,7 @@ Ideally, all of the configuration that needs to be modified is exposed through v
 ### Dashboard and debugging
 
 Traefik is run as a systemd service on the managed node.
+
 Check the status of the service using systemctl
 ```
 systemctl status traefik
@@ -50,8 +51,7 @@ journalctl -u traefik
 journalctl -u traefik -f
 ```
 
-Traefik also has a built-in dashboard that can be accessed at `.dashboard.host` from `playbook.yml`.
-Authorized users need to be configured in `playbook.yml` using `htpasswd`. See [example htpasswd generator](https://hostingcanada.org/htpasswd-generator/).
+Traefik also has a built-in dashboard that can be accessed at `.dashboard.host` from `playbook.yml`. The admin dashboard is behind basic auth and `authorized_users` need to be configured in `playbook.yml` using `htpasswd`. See [example htpasswd generator](https://hostingcanada.org/htpasswd-generator/).
 
 ### Upgrading traefik
 
