@@ -2,7 +2,7 @@
 
 Ansible playbook to setup traefik as a loadbalancer with automated ssl cert generation and renewal
 
-![Ansible Traefik Diagram](.docs/img/ansible-traefik.png)
+![Ansible Traefik Diagram](./docs/img/ansible-traefik.png)
 
 ## Prerequisites
 
