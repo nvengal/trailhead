@@ -70,3 +70,4 @@ The only required configuration in this project is `.service.host` and `.dashboa
 - sticky sessions?
 - health checks
 - traefik.service todos
+- update traefik binary

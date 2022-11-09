@@ -1,0 +1,36 @@
+################################################################
+#
+# Dynamic Configuration for Traefik v2
+# https://doc.traefik.io/traefik/reference/dynamic-configuration/file/
+#
+################################################################
+
+http:
+  routers:
+    {{ service.name }}:
+      rule: Host(`{{ service.host }}`)
+      service: {{ service.name }}
+      tls:
+        certResolver: lets-encrypt
+
+    internal-api:
+      rule: Host(`{{ dashboard.host }}`)
+      service: api@internal
+      middlewares: 
+        - internal-auth
+      tls:
+        certResolver: lets-encrypt
+
+  services:
+    {{ service.name }}:
+      loadBalancer:
+        servers:
+{% for target in service.targets %}
+          - url: {{ target }}
+{% endfor %}
+
+  
+  middlewares:
+    internal-auth:
+      basicAuth:
+        users: {{ dashboard.authorized_users }}

@@ -8,9 +8,9 @@
 ################################################################
 # Global configuration
 ################################################################
-[global]
-  checkNewVersion = true
-  sendAnonymousUsage = true
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: true
 
 ################################################################
 # Entrypoints configuration
@@ -20,30 +20,34 @@
 #
 # Optional
 # Default:
-[entryPoints]
-  [entryPoints.web]
-  address = ":80"
-    [entryPoints.web.http.redirections.entryPoint]
-    to = "websecure"
+entryPoints:
+  web:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
 
-  [entryPoints.websecure]
-  address = ":443"
+  websecure:
+    address: ":443"
 
 ################################################################
 # Certificate Resolvers
 ################################################################
-[certificatesResolvers.lets-encrypt.acme]
-  email = "changeme@email.com" # TODO
-  storage = "{{ traefik_config_dir }}/acme.json"
-  [certificatesResolvers.lets-encrypt.acme.httpChallenge]
-    entryPoint = "web"
+certificatesResolvers:
+  lets-encrypt:
+    acme:
+      email: changeme@email.com # TODO
+      storage: {{ traefik_config_dir }}/acme.json
+      httpChallenge:
+        entryPoint: web
 
 ################################################################
 # Provider configuration
 ################################################################
-[providers]
-  [providers.file]
-  filename = "{{ traefik_config_dir }}/config.toml"
+providers:
+  file:
+    filename: {{ traefik_config_dir }}/config.yml
 
 ################################################################
 # Traefik logs configuration
@@ -54,14 +58,14 @@
 #
 # Optional
 #
-[log]
+log:
 
   # Log level
   #
   # Optional
   # Default: "ERROR"
   #
-  level = "INFO"
+  level: INFO
 
   # Sets the filepath for the traefik log. If not specified, stdout will be used.
   # Intermediate directories are created if necessary.
@@ -110,21 +114,9 @@
 ################################################################
 
 # Enable API and dashboard
-[api]
-
-  # Enable the API in insecure mode
-  #
-  # Optional
-  # Default: false
-  #
-  # insecure = true
-
-  # Enabled Dashboard
-  #
-  # Optional
-  # Default: true
-  #
-  # dashboard = false
+api:
+  insecure: false
+  dashboard: true
 
 ################################################################
 # Ping configuration

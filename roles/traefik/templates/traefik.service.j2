@@ -4,7 +4,7 @@ Description=Traefik
 Documentation=https://doc.traefik.io/traefik/
 #After=network-online.target
 #AssertFileIsExecutable=/usr/bin/traefik
-#AssertPathExists={{ traefik_config_dir }}/traefik.toml
+#AssertPathExists={{ traefik_config_dir }}/traefik.yml
 
 [Service]
 # Run traefik as its own user (create new user with: useradd -r -s /bin/false -U -M traefik)
@@ -13,7 +13,7 @@ Documentation=https://doc.traefik.io/traefik/
 
 # configure service behavior
 Type=notify
-ExecStart=/usr/bin/traefik --configFile={{ traefik_config_dir }}/traefik.toml
+ExecStart=/usr/bin/traefik --configFile={{ traefik_config_dir }}/traefik.yml
 Restart=always
 WatchdogSec=1s
 
