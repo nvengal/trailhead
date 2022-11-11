@@ -9,7 +9,7 @@ Ansible playbook to setup traefik as a loadbalancer with automated ssl cert gene
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) installed on control node
 - User with SSH access from control node to managed node
 - Replace placeholder values
-  - [Control Node IP](https://github.com/nvengal/trailhead/blob/1e56d2be9b23b6d9b48045b9ad984aa29ab592a2/hosts.yml#L5)
+  - [Managed Node IP](https://github.com/nvengal/trailhead/blob/1e56d2be9b23b6d9b48045b9ad984aa29ab592a2/hosts.yml#L5)
   - [Traefik Config](https://github.com/nvengal/trailhead/blob/1e56d2be9b23b6d9b48045b9ad984aa29ab592a2/playbook.yml#L19-L30)
 
 ## How to deploy traefik using ansible
@@ -67,7 +67,6 @@ The only required configuration in this project is `.service.host` and `.dashboa
 
 ## TODO
 
-- sticky sessions?
 - health checks
 - traefik.service todos
 - update traefik binary

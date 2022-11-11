@@ -24,6 +24,8 @@ http:
   services:
     {{ service.name }}:
       loadBalancer:
+        sticky:
+         cookie: {}
         servers:
 {% for target in service.targets %}
           - url: {{ target }}
