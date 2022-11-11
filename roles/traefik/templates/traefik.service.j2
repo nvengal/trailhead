@@ -7,9 +7,9 @@ Documentation=https://doc.traefik.io/traefik/
 #AssertPathExists={{ traefik_config_dir }}/traefik.yml
 
 [Service]
-# Run traefik as its own user (create new user with: useradd -r -s /bin/false -U -M traefik)
-#User=traefik
-#AmbientCapabilities=CAP_NET_BIND_SERVICE
+User=traefik
+Group=traefik
+AmbientCapabilities=CAP_NET_BIND_SERVICE
 
 # configure service behavior
 Type=notify
